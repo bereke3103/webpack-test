@@ -10,5 +10,9 @@ export function buildDevServer(options: BuildOptions): DevServerConfiguration {
     open: true,
     //для роутинга... Это работает только для dev-server, если раздавать статику через nginx, то надо делать проксирование на Index.html
     historyApiFallback: true,
+
+    //npm i @pmmmwh/react-refresh-webpack-plugin@0.5.11
+    //npm i react-refresh-typescript@2.0.9
+    hot: true,
   };
 }

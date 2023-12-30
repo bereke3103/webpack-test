@@ -4,6 +4,7 @@ import webpack, { DefinePlugin } from 'webpack';
 import { BuildOptions } from './types/types';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import ReactRefreshPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 
 export function buildPlugins({
   mode,
@@ -30,6 +31,8 @@ export function buildPlugins({
       //компиляция тайпскрипта с помощью этого плагина будет отдельным: не нагружая саму сборку
       new ForkTsCheckerWebpackPlugin()
     );
+    //после того, как мы добавили этот плагин, в ts-loader нужно добавить дополнительную логику
+    plugins.push(new ReactRefreshPlugin());
   }
 
   if (isProd) {

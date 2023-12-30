@@ -16,9 +16,9 @@ function TODO(a: number) {
 const App = () => {
   const [number, setNumber] = useState<number>(0);
 
-  if (__PLATFORM__ === 'desktop') {
-    return <div>IS DESKTOP PLATFORM</div>;
-  }
+  // if (__PLATFORM__ === 'desktop') {
+  //   return <div>IS DESKTOP PLATFORM</div>;
+  // }
 
   if (__PLATFORM__ === 'mobile') {
     return <div>IS MOBILE PLATFORM</div>;
@@ -69,7 +69,15 @@ const App = () => {
         >
           Decrement <span>scss</span>
         </button>
-
+        <p>Text new</p>
+        <p>Text new</p>
+        <p>Text new</p>
+        <p>Text new</p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam delectus
+        repudiandae libero exercitationem labore eligendi provident aspernatur
+        fugit eaque quae nihil cum, iure blanditiis at corporis sit itaque
+        perspiciatis ullam.
+        <input type="text" />
         <About />
         <Outlet />
       </div>

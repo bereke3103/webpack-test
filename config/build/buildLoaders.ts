@@ -1,4 +1,5 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import ReactRefreshTypescript from 'react-refresh-typescript';
 import { ModuleOptions } from 'webpack';
 import { BuildOptions } from './types/types';
 
@@ -87,6 +88,10 @@ export function buildLoaders({ mode }: BuildOptions): ModuleOptions['rules'] {
           //для проверки во время компиляции
           // "typecheck": "tsc"
           transpileOnly: true,
+          getCustomTransformers: () => {
+            //после того, добавили его в лоадер, нужно добавить плагин // plugins.push(new ReactRefreshPlugin());
+            before: [isDev && ReactRefreshTypescript()].filter(Boolean);
+          },
         },
       },
     ],
