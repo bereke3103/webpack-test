@@ -15,6 +15,37 @@ export function buildLoaders({ mode }: BuildOptions): ModuleOptions['rules'] {
     },
   };
 
+  const assetsLoader = {
+    // test: /\.(png|svg|jpg|jpeg|gif)$/i,
+    //удаляем SVG так как мы его обрабатываем уже по другому отдельным loader
+    //npm i @svgr/webpack@8.1.0
+    test: /\.(png|jpg|jpeg|gif)$/i,
+    type: 'asset/resource',
+  };
+
+  const svgLoader = {
+    test: /\.svg$/,
+    use: [
+      {
+        loader: '@svgr/webpack',
+        //тут настройки для Svg использования его как компонент
+        options: {
+          icon: true,
+          svgConfig: {
+            plugins: [
+              {
+                name: 'convertColors',
+                params: {
+                  currentColor: true,
+                },
+              },
+            ],
+          },
+        },
+      },
+    ],
+  };
+
   const scssLoader =
     // loader для стилизации
     //npm i -D css-loader@6.8.1
@@ -41,5 +72,5 @@ export function buildLoaders({ mode }: BuildOptions): ModuleOptions['rules'] {
     exclude: /node_modules/,
   };
 
-  return [scssLoader, tsLoader];
+  return [assetsLoader, scssLoader, tsLoader, svgLoader];
 }
