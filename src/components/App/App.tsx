@@ -10,7 +10,9 @@ import SvgComponent from '@/assets/pic-svg.svg';
 //Tree shaking
 // ЕСЛИ КОД НЕ ИСПОЛЬЗУЕТСЯ, ТО В СБОРКУ НЕ ВОЙДЕТ
 //lazy loading + Декомпозиция
-
+function TODO(a: number) {
+  return a;
+}
 const App = () => {
   const [number, setNumber] = useState<number>(0);
 
@@ -25,6 +27,9 @@ const App = () => {
   if (__ENV__ === 'development') {
     //addDevtools
   }
+
+  // TODO('5');
+  TODO(5);
 
   return (
     <>

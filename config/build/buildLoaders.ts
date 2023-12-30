@@ -64,12 +64,32 @@ export function buildLoaders({ mode }: BuildOptions): ModuleOptions['rules'] {
       ],
     };
 
+  //!1 первый вариант
+  // const tsLoader = {
+  //   //ts-loader умеет работать с JSX
+  //   //Если бы не использовали тайпскрипт: нужен был бы babel-loader
+  //   // test: /\.tsx?$/,
+  //   use: 'ts-loader',
+  //   exclude: /node_modules/,
+  // };
+
+  //!2 второй вариант
   const tsLoader = {
     //ts-loader умеет работать с JSX
     //Если бы не использовали тайпскрипт: нужен был бы babel-loader
-    test: /\.tsx?$/,
-    use: 'ts-loader',
     exclude: /node_modules/,
+    test: /\.tsx?$/,
+    use: [
+      {
+        loader: 'ts-loader',
+        options: {
+          //пропускат ошибки TypeScript, но с помощью плагина new ForkTsCheckerWebpackPlugin() при компиляции ругнется на тайпскриптовую ошибку, так как из за флажка transpileOnly - может пропустить
+          //для проверки во время компиляции
+          // "typecheck": "tsc"
+          transpileOnly: true,
+        },
+      },
+    ],
   };
 
   return [assetsLoader, scssLoader, tsLoader, svgLoader];
