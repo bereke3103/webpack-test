@@ -24,6 +24,7 @@ export function buildWebpack(options: BuildOptions): webpack.Configuration {
     output: {
       path: paths.output,
       filename: '[name].[contenthash].bundle.js',
+      chunkFilename: '[name].chunk-bundle-bereke.[contenthash].js',
       clean: true,
     },
 

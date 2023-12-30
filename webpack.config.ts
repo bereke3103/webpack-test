@@ -50,6 +50,7 @@ import path from 'path';
 export interface EnvVariables {
   mode: BuildMode;
   port: number;
+  analyzer?: boolean;
 }
 
 export default (env: EnvVariables) => {
@@ -63,6 +64,8 @@ export default (env: EnvVariables) => {
     port: env.port ?? 3000,
     mode: env.mode ?? 'development',
     paths,
+    //npm run build:prod -- --env analyzer=true
+    analyzer: env.analyzer,
   });
 
   return config;
