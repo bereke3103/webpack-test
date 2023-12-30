@@ -2,6 +2,7 @@ import { useState } from 'react';
 import cssStyle from './App.module.css';
 import scssStyle from './Style.module.scss';
 import { Link, Outlet } from 'react-router-dom';
+import About from '@/pages/allPages/about/About';
 const App = () => {
   const [number, setNumber] = useState<number>(0);
   return (
@@ -26,6 +27,7 @@ const App = () => {
         Decrement <span>scss</span>
       </button>
 
+      <About />
       <Outlet />
     </div>
   );

@@ -11,7 +11,12 @@
 
     //ПОСЛЕ ТИПИЗАЦИИ WEBPACK НА TS, добавили вот эти две строки
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    //нужно для описания красивого пути
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "ts-node": {
     "compilerOptions": {
