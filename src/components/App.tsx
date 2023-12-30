@@ -1,19 +1,19 @@
 import { useState } from 'react';
-import './app.css';
-import './style.scss';
+import cssStyle from './App.module.css';
+import scssStyle from './Style.module.scss';
 const App = () => {
   const [number, setNumber] = useState<number>(0);
   return (
     <div>
-      <h2>{number}</h2>
+      <h2 className={cssStyle.value}>{number}</h2>
       <button
-        className="css-button"
+        className={cssStyle.cssButton}
         onClick={() => setNumber((prev) => prev + 1)}
       >
         Increment <span>css</span>
       </button>
       <button
-        className="scss-button"
+        className={scssStyle.scssButton}
         onClick={() => setNumber((prev) => prev - 1)}
       >
         Decrement <span>scss</span>

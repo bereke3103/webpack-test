@@ -5,6 +5,16 @@ import { BuildOptions } from './types/types';
 export function buildLoaders({ mode }: BuildOptions): ModuleOptions['rules'] {
   const isDev = mode === 'development';
 
+  //при сборке на дев легко дебажить
+  const cssLoaderWithModules = {
+    loader: 'css-loader',
+    options: {
+      modules: {
+        localIdentName: isDev ? '[path][name]__[local]' : '[hash:base64:8]',
+      },
+    },
+  };
+
   const scssLoader =
     // loader для стилизации
     //npm i -D css-loader@6.8.1
@@ -17,7 +27,8 @@ export function buildLoaders({ mode }: BuildOptions): ModuleOptions['rules'] {
         // 'style-loader', если есть MiniCssExtractPlugin -> то style-loader можно не вставлять
         //
         isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-        'css-loader',
+        cssLoaderWithModules,
+        // 'css-loader',
         'sass-loader',
       ],
     };
