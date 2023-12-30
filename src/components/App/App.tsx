@@ -7,11 +7,29 @@ import pngPic from '@/assets/pic-png.png';
 import jpgPic from '@/assets/pic-jpeg.jpg';
 import SvgComponent from '@/assets/pic-svg.svg';
 
+//Tree shaking
+// ЕСЛИ КОД НЕ ИСПОЛЬЗУЕТСЯ, ТО В СБОРКУ НЕ ВОЙДЕТ
+//lazy loading + Декомпозиция
+
 const App = () => {
   const [number, setNumber] = useState<number>(0);
+
+  if (__PLATFORM__ === 'desktop') {
+    return <div>IS DESKTOP PLATFORM</div>;
+  }
+
+  if (__PLATFORM__ === 'mobile') {
+    return <div>IS MOBILE PLATFORM</div>;
+  }
+
+  if (__ENV__ === 'development') {
+    //addDevtools
+  }
+
   return (
     <>
       <div>
+        <h1>PLATFORM: {__PLATFORM__}</h1>
         <img src={pngPic} width={100} alt="pngPic" />
         <img src={jpgPic} width={100} alt="jpgPic" />
         {/* <img src={svgPic} width={100} alt="svgPic" /> */}

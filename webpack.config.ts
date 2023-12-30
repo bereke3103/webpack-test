@@ -45,11 +45,16 @@
 
 import webpack from 'webpack';
 import { buildWebpack } from './config/build/buildWebpack';
-import { BuildMode, BuildPath } from './config/build/types/types';
+import {
+  BuildMode,
+  BuildPath,
+  BuildPlatform,
+} from './config/build/types/types';
 import path from 'path';
 export interface EnvVariables {
-  mode: BuildMode;
-  port: number;
+  mode?: BuildMode;
+  port?: number;
+  platform?: BuildPlatform;
   analyzer?: boolean;
 }
 
@@ -68,6 +73,7 @@ export default (env: EnvVariables) => {
     paths,
     //npm run build:prod -- --env analyzer=true
     analyzer: env.analyzer,
+    platform: env.platform ?? 'desktop',
   });
 
   return config;
