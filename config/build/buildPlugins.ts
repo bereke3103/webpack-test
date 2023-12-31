@@ -5,6 +5,8 @@ import { BuildOptions } from './types/types';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import ReactRefreshPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import path from 'path';
+import CopyPlugin from 'copy-webpack-plugin';
 
 export function buildPlugins({
   mode,
@@ -18,6 +20,7 @@ export function buildPlugins({
   const plugins: Configuration['plugins'] = [
     new HtmlWebpackPlugin({
       template: paths.html,
+      favicon: path.resolve(paths.public, 'favicon.png'),
     }),
     new DefinePlugin({
       __PLATFORM__: JSON.stringify(platform),
@@ -40,6 +43,16 @@ export function buildPlugins({
       new MiniCssExtractPlugin({
         filename: 'css/[name].[contenthash].file.css',
         chunkFilename: 'css/[name].[contenthash].chunkFile.css',
+      })
+    );
+    plugins.push(
+      new CopyPlugin({
+        patterns: [
+          {
+            from: path.resolve(paths.public, 'locales'),
+            to: path.resolve(paths.output, 'locales'),
+          },
+        ],
       })
     );
   }
