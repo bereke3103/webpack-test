@@ -79,3 +79,6 @@ export default (env: EnvVariables) => {
 
   return config;
 };
+
+//npm i -D @babel/core@7.23.2 babel-loader@9.1.3 легендарный babel
+//ts-loader, babel-loader, esbuild-loader, swc-loader --- они взаимозаменяемы

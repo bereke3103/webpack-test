@@ -2,9 +2,10 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ReactRefreshTypescript from 'react-refresh-typescript';
 import { ModuleOptions } from 'webpack';
 import { BuildOptions } from './types/types';
+import { BuildBabelLoader } from './babel/buildBabelLoader';
 
-export function buildLoaders({ mode }: BuildOptions): ModuleOptions['rules'] {
-  const isDev = mode === 'development';
+export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
+  const isDev = options.mode === 'development';
 
   //при сборке на дев легко дебажить
   const cssLoaderWithModules = {
@@ -97,5 +98,14 @@ export function buildLoaders({ mode }: BuildOptions): ModuleOptions['rules'] {
     ],
   };
 
-  return [assetsLoader, scssLoader, tsLoader, svgLoader];
+  const babelLoader = BuildBabelLoader(options);
+
+  return [
+    assetsLoader,
+    scssLoader,
+    //tsLoader,
+    //так как у нас имеется конфигурация babelLoader, ts-loader можем типа не использовать
+    babelLoader,
+    svgLoader,
+  ];
 }

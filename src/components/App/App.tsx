@@ -33,13 +33,13 @@ const App = () => {
 
   return (
     <>
-      <div>
+      <div className="className-data-test" data-testId="test-id-for-dev">
         <h1>PLATFORM: {__PLATFORM__}</h1>
         <img src={pngPic} width={100} alt="pngPic" />
         <img src={jpgPic} width={100} alt="jpgPic" />
         {/* <img src={svgPic} width={100} alt="svgPic" /> */}
 
-        <div>
+        <div data-testId="test-id-for-dev">
           {/* протипизировали SVF */}
           <SvgComponent
             fill={'green'}
@@ -49,7 +49,7 @@ const App = () => {
           />
         </div>
       </div>
-      <div>
+      <div data-testId="test-id-for-dev">
         <Link to={'/'}>Main</Link>
         <br />
         <Link to={'/about'}>About</Link>
@@ -69,6 +69,8 @@ const App = () => {
         >
           Decrement <span>scss</span>
         </button>
+        <p>Text new</p>
+        <p>Text new</p>
         <p>Text new</p>
         <p>Text new</p>
         <p>Text new</p>
