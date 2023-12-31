@@ -35,6 +35,7 @@ export function buildWebpack(options: BuildOptions): webpack.Configuration {
       rules: buildLoaders(options),
     },
     resolve: buildResolver(options),
+    //нужно для того, чтоб когда ошибка вылетела условно, в консоли мы могли комфортно смотреть на код -> для полного ознакомления можно перейти на webpack dev-tool source map
     devtool: isDev && 'inline-source-map',
     //и запускается через webpack server
     devServer: isDev ? buildDevServer(options) : undefined,
